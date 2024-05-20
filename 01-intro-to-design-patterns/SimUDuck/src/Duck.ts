@@ -1,4 +1,23 @@
+import {FlyBehavior, FlyNoWay, FlyWithWings} from "./FlyBehavior";
+import {MuteQuack, Quack, QuackBehavior, Squeak} from "./QuackBehavior";
+
 export abstract class Duck {
+    flyBehavior: FlyBehavior;
+    quackBehavior: QuackBehavior;
+
+    constructor(quackBehavior: QuackBehavior, flyBehavior: FlyBehavior) {
+        this.quackBehavior = quackBehavior;
+        this.flyBehavior = flyBehavior;
+    }
+
+    performQuack() {
+        this.quackBehavior.quack();
+    }
+
+    performFly() {
+        this.flyBehavior.fly();
+    }
+
     swim() {
         console.log('swim');
     }
@@ -6,45 +25,29 @@ export abstract class Duck {
     abstract display(): void
 }
 
-export interface Flyable {
-    fly(): void;
-}
+export class MallardDuck extends Duck {
+    constructor() {
+        super(new Quack(), new FlyWithWings());
+    }
 
-export interface Quackable {
-    quack(): void;
-}
-
-export class MallardDuck extends Duck implements Flyable, Quackable {
     display(): void {
         console.log('MallardDuck');
     }
-
-    fly(): void {
-        console.log('fly');
-    }
-
-    quack(): void {
-        console.log('quack');
-    }
 }
 
-export class RedheadDuck extends Duck implements Flyable, Quackable {
+export class RedheadDuck extends Duck {
+    constructor() {
+        super(new Quack(), new FlyWithWings());
+    }
+
     display(): void {
         console.log('RedheadDuck');
     }
-
-    fly(): void {
-        console.log('fly');
-    }
-
-    quack(): void {
-        console.log('quack');
-    }
 }
 
-export class RubberDuck extends Duck implements Quackable {
-    quack() {
-        console.log('squeak');
+export class RubberDuck extends Duck {
+    constructor() {
+        super(new Squeak(), new FlyNoWay());
     }
 
     display(): void {
@@ -53,6 +56,10 @@ export class RubberDuck extends Duck implements Quackable {
 }
 
 export class DecoyDuck extends Duck {
+    constructor() {
+        super(new MuteQuack(), new FlyNoWay());
+    }
+
     display(): void {
         console.log('DecoyDuck');
     }
