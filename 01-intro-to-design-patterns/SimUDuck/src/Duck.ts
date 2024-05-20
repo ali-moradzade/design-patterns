@@ -10,6 +10,14 @@ export abstract class Duck {
         this.flyBehavior = flyBehavior;
     }
 
+    setFlyBehavior(fb: FlyBehavior) {
+        this.flyBehavior = fb;
+    }
+
+    setQuackBehavior(qb: QuackBehavior) {
+        this.quackBehavior = qb;
+    }
+
     performQuack() {
         this.quackBehavior.quack();
     }
@@ -62,5 +70,15 @@ export class DecoyDuck extends Duck {
 
     display(): void {
         console.log('DecoyDuck');
+    }
+}
+
+export class ModelDuck extends Duck {
+    constructor() {
+        super(new Quack(), new FlyNoWay());
+    }
+
+    display(): void {
+        console.log('ModelDuck');
     }
 }
