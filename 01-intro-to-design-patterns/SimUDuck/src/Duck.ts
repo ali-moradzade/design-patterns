@@ -1,38 +1,50 @@
 export abstract class Duck {
-    quack() {
-        console.log('quack');
-    }
-
     swim() {
         console.log('swim');
-    }
-
-    fly() {
-        console.log('fly');
     }
 
     abstract display(): void
 }
 
-export class MallardDuck extends Duck {
+export interface Flyable {
+    fly(): void;
+}
+
+export interface Quackable {
+    quack(): void;
+}
+
+export class MallardDuck extends Duck implements Flyable, Quackable {
     display(): void {
         console.log('MallardDuck');
     }
+
+    fly(): void {
+        console.log('fly');
+    }
+
+    quack(): void {
+        console.log('quack');
+    }
 }
 
-export class RedheadDuck extends Duck {
+export class RedheadDuck extends Duck implements Flyable, Quackable {
     display(): void {
         console.log('RedheadDuck');
     }
-}
 
-export class RubberDuck extends Duck {
-    quack() {
-        console.log('squeak');
+    fly(): void {
+        console.log('fly');
     }
 
-    fly() {
-        // do nothing
+    quack(): void {
+        console.log('quack');
+    }
+}
+
+export class RubberDuck extends Duck implements Quackable {
+    quack() {
+        console.log('squeak');
     }
 
     display(): void {
@@ -41,14 +53,6 @@ export class RubberDuck extends Duck {
 }
 
 export class DecoyDuck extends Duck {
-    quack() {
-        // do nothing
-    }
-
-    fly() {
-        // do nothing
-    }
-
     display(): void {
         console.log('DecoyDuck');
     }
