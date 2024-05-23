@@ -1,39 +1,45 @@
-import {CurrentConditionsDisplay, ForecastDisplay, StatisticsDisplay} from "./Displays";
+import {Subject} from "./Subject";
+import {Observer} from "./Observer";
 
-export class WeatherData {
-    currentConditionsDisplay: CurrentConditionsDisplay;
-    statisticsDisplay: StatisticsDisplay;
-    forecastDisplay: ForecastDisplay;
+export class WeatherData implements Subject {
+    private readonly observers: Observer[];
+    temperature: number;
+    humidity: number;
+    pressure: number;
 
-    constructor(
-        currentConditionsDisplay: CurrentConditionsDisplay,
-        statisticsDisplay: StatisticsDisplay,
-        forecastDisplay: ForecastDisplay,
-    ) {
-        this.currentConditionsDisplay = currentConditionsDisplay;
-        this.statisticsDisplay = statisticsDisplay;
-        this.forecastDisplay = forecastDisplay;
+    constructor() {
+        this.observers = [];
+        this.temperature = 0;
+        this.humidity = 0;
+        this.pressure = 0;
     }
 
-    getTemperature(): Number {
-        return 72;
+    notifyObservers(): void {
+        for (const observer of this.observers) {
+            observer.update(this.temperature, this.humidity, this.pressure);
+        }
     }
 
-    getHumidity(): Number {
-        return 60;
+    registerObserver(observer: Observer): void {
+        this.observers.push(observer);
     }
 
-    getPressure(): Number {
-        return 2;
+    removeObserver(observer: Observer): void {
+        const index = this.observers.indexOf(observer, 0);
+        if (index > -1) {
+            this.observers.splice(index, 1);
+        }
     }
 
     measurementsChanged(): void {
-        const temperature = this.getTemperature();
-        const humidity = this.getHumidity();
-        const pressure = this.getPressure();
+        this.notifyObservers();
+    }
 
-        this.currentConditionsDisplay.update(temperature, humidity, pressure);
-        this.statisticsDisplay.update(temperature, humidity, pressure);
-        this.forecastDisplay.update(temperature, humidity, pressure);
+    setMeasurements(temperature: number, humidity: number, pressure: number) {
+        this.temperature = temperature;
+        this.humidity = humidity;
+        this.pressure = pressure;
+
+        this.measurementsChanged();
     }
 }
