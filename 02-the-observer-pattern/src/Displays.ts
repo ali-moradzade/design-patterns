@@ -99,3 +99,37 @@ export class ForecastDisplay implements Observer, DisplayElement {
         console.log(`Watch out for cooler, rainy weather`);
     }
 }
+
+export class HeatIndexDisplay implements Observer, DisplayElement {
+    private readonly weatherData: WeatherData;
+    private temperature: number;
+    private humidity: number;
+
+    constructor(weatherData: WeatherData) {
+        this.weatherData = weatherData;
+        this.weatherData.registerObserver(this);
+
+        this.temperature = NaN;
+        this.humidity = NaN;
+    }
+
+    update(temperature: number, humidity: number, pressure: number): void {
+        this.temperature = temperature;
+        this.humidity = humidity;
+
+        this.display();
+    }
+
+    display(): void {
+        const T = this.temperature;
+        const RH = this.humidity;
+        const heatIndex = 16.923 + 1.85212 * 0.1 * T + 5.37941 * RH - 1.00254 * 0.1 *
+            T * RH + 9.41695 * 0.001 * T * T + 7.28898 * 0.001 * RH * RH + 3.45372 *
+            0.0001 * T * T * RH - 8.14971 * 0.0001 * T * RH * RH + 1.02102 * 0.00001 * T * T *
+            RH * RH - 3.8646 * 0.00001 * T * T * T + 2.91583 * 0.00001 * RH * RH * RH + 1.42721 * 0.000001
+            * T * T * T * RH + 1.97483 * 0.0000001 * T * RH * RH * RH - 2.18429 * 0.00000001 * T * T * T * RH * RH
+            + 8.43296 * 0.0000000001 * T * T * RH * RH * RH - 4.81975 * 0.00000000001 * T * T * T * RH * RH * RH;
+
+        console.log(`Heat Index is: ${heatIndex}`);
+    }
+}

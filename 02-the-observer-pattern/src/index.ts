@@ -1,5 +1,5 @@
 import {WeatherData} from "./WeatherData";
-import {CurrentConditionsDisplay, ForecastDisplay, StatisticsDisplay} from "./Displays";
+import {CurrentConditionsDisplay, ForecastDisplay, HeatIndexDisplay, StatisticsDisplay} from "./Displays";
 
 function main() {
     const weatherData = new WeatherData();
@@ -7,6 +7,7 @@ function main() {
     const currentConditionsDisplay = new CurrentConditionsDisplay(weatherData);
     const statisticsDisplay = new StatisticsDisplay(weatherData);
     const forecastDisplay = new ForecastDisplay(weatherData);
+    const heatIndexDisplay = new HeatIndexDisplay(weatherData);
 
     weatherData.setMeasurements(80, 65, 30.4);
     weatherData.setMeasurements(82, 70, 29.2);
