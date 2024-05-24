@@ -18,9 +18,9 @@ export class CurrentConditionsDisplay implements Observer, DisplayElement {
         this.humidity = NaN;
     }
 
-    update(temperature: number, humidity: number, pressure: number) {
-        this.temperature = temperature;
-        this.humidity = humidity;
+    update() {
+        this.temperature = this.weatherData.getTemperature();
+        this.humidity = this.weatherData.getHumidity();
 
         this.display();
     }
@@ -41,7 +41,8 @@ export class StatisticsDisplay implements Observer, DisplayElement {
         this.temperatures = [];
     }
 
-    update(temperature: number, humidity: number, pressure: number) {
+    update() {
+        const temperature = this.weatherData.getTemperature();
         this.temperatures.push(temperature);
 
         this.display();
@@ -87,9 +88,9 @@ export class ForecastDisplay implements Observer, DisplayElement {
         this.humidity = NaN;
     }
 
-    update(temperature: number, humidity: number, pressure: number) {
-        this.temperature = temperature;
-        this.humidity = humidity;
+    update() {
+        this.temperature = this.weatherData.getTemperature();
+        this.humidity = this.weatherData.getHumidity();
 
         this.display();
     }
@@ -113,9 +114,9 @@ export class HeatIndexDisplay implements Observer, DisplayElement {
         this.humidity = NaN;
     }
 
-    update(temperature: number, humidity: number, pressure: number): void {
-        this.temperature = temperature;
-        this.humidity = humidity;
+    update(): void {
+        this.temperature = this.weatherData.getTemperature();
+        this.humidity = this.weatherData.getHumidity();
 
         this.display();
     }

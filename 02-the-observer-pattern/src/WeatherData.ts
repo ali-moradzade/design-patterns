@@ -3,9 +3,9 @@ import {Observer} from "./Observer";
 
 export class WeatherData implements Subject {
     private readonly observers: Observer[];
-    temperature: number;
-    humidity: number;
-    pressure: number;
+    private temperature: number;
+    private humidity: number;
+    private pressure: number;
 
     constructor() {
         this.observers = [];
@@ -16,7 +16,7 @@ export class WeatherData implements Subject {
 
     notifyObservers(): void {
         for (const observer of this.observers) {
-            observer.update(this.temperature, this.humidity, this.pressure);
+            observer.update();
         }
     }
 
@@ -29,6 +29,18 @@ export class WeatherData implements Subject {
         if (index > -1) {
             this.observers.splice(index, 1);
         }
+    }
+
+    getTemperature() {
+        return this.temperature;
+    }
+
+    getHumidity() {
+        return this.humidity;
+    }
+
+    getPressure() {
+        return this.pressure;
     }
 
     measurementsChanged(): void {
