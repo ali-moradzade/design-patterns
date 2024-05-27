@@ -1,9 +1,13 @@
-import {Beverage} from "./Beverage";
+import {Beverage, Size} from "./Beverage";
 
 export abstract class CondimentDecorator extends Beverage {
     beverage: Beverage;
 
     abstract getDescription(): string;
+
+    getSize(): Size {
+        return this.beverage.getSize();
+    }
 }
 
 export class Milk extends CondimentDecorator {
@@ -17,7 +21,17 @@ export class Milk extends CondimentDecorator {
     }
 
     cost(): number {
-        return this.beverage.cost() + 0.10;
+        let totalCost = this.beverage.cost();
+
+        if (this.beverage.getSize() === Size.TALL) {
+            totalCost += 0.10;
+        } else if (this.beverage.getSize() === Size.GRANDE) {
+            totalCost += 0.15;
+        } else if (this.beverage.getSize() === Size.VENTI) {
+            totalCost += 0.20;
+        }
+
+        return totalCost;
     }
 }
 
@@ -31,8 +45,19 @@ export class Mocha extends CondimentDecorator {
         return `${this.beverage.getDescription()}, Mocha`;
     }
 
+    // I added prices myself, increasing 0.05
     cost(): number {
-        return this.beverage.cost() + 0.20;
+        let totalCost = this.beverage.cost();
+
+        if (this.beverage.getSize() === Size.TALL) {
+            totalCost += 0.20;
+        } else if (this.beverage.getSize() === Size.GRANDE) {
+            totalCost += 0.25;
+        } else if (this.beverage.getSize() === Size.VENTI) {
+            totalCost += 0.30;
+        }
+
+        return totalCost;
     }
 }
 
@@ -46,8 +71,19 @@ export class Soy extends CondimentDecorator {
         return `${this.beverage.getDescription()}, Soy`;
     }
 
+    // I added prices myself
     cost(): number {
-        return this.beverage.cost() + 0.15;
+        let totalCost = this.beverage.cost();
+
+        if (this.beverage.getSize() === Size.TALL) {
+            totalCost += 0.15;
+        } else if (this.beverage.getSize() === Size.GRANDE) {
+            totalCost += 0.20;
+        } else if (this.beverage.getSize() === Size.VENTI) {
+            totalCost += 0.25;
+        }
+
+        return totalCost;
     }
 }
 
@@ -62,6 +98,16 @@ export class Whip extends CondimentDecorator {
     }
 
     cost(): number {
-        return this.beverage.cost() + 0.10;
+        let totalCost = this.beverage.cost();
+
+        if (this.beverage.getSize() === Size.TALL) {
+            totalCost += 0.10;
+        } else if (this.beverage.getSize() === Size.GRANDE) {
+            totalCost += 0.15;
+        } else if (this.beverage.getSize() === Size.VENTI) {
+            totalCost += 0.20;
+        }
+
+        return totalCost;
     }
 }

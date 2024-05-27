@@ -1,8 +1,23 @@
+export enum Size {
+    TALL,
+    GRANDE,
+    VENTI,
+}
+
 export abstract class Beverage {
     description = 'Unknown Beverage';
+    size = Size.TALL;
 
     getDescription() {
         return this.description;
+    }
+
+    setSize(size: Size) {
+        this.size = size;
+    }
+
+    getSize() {
+        return this.size;
     }
 
     abstract cost(): number;
