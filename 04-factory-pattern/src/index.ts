@@ -1,16 +1,13 @@
-import {NYPizzaFactory} from "./NYPizzaFactory";
 import {PizzaStore} from "./PizzaStore";
-import {ChicagoPizzaFactory} from "./ChicagoPizzaFactory";
+import {ChicagoPizzaStore, NYPizzaStore} from "./Factories";
 
 function main() {
-    const nyFactory = new NYPizzaFactory();
-    const nyStore = new PizzaStore(nyFactory);
+    const nyStore: PizzaStore = new NYPizzaStore();
     nyStore.orderPizza('veggie');
 
     console.log();
 
-    const chicagoFactory = new ChicagoPizzaFactory();
-    const chicagoStore = new PizzaStore(chicagoFactory);
+    const chicagoStore: PizzaStore = new ChicagoPizzaStore();
     chicagoStore.orderPizza('veggie');
 }
 
