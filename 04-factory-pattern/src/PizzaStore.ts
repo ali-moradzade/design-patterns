@@ -1,8 +1,8 @@
 import {Pizza} from "./Pizza";
-import {SimplePizzaFactory} from "./SimplePizzaFactory";
+import {NYPizzaFactory} from "./NYPizzaFactory";
 
 export class PizzaStore {
-    constructor(public simplePizzaFactory: SimplePizzaFactory) {
+    constructor(public simplePizzaFactory: NYPizzaFactory) {
     }
 
     orderPizza(type: string): Pizza {

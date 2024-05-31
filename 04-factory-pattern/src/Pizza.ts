@@ -8,8 +8,8 @@ export interface Pizza {
     box(): void;
 }
 
-export class CheesePizza implements Pizza {
-    private readonly name = 'CheesePizza';
+export class NYStyleCheesePizza implements Pizza {
+    private readonly name = 'NYStyleCheesePizza';
 
     bake() {
         console.log(`baking ${this.name}`);
@@ -28,8 +28,8 @@ export class CheesePizza implements Pizza {
     }
 }
 
-export class GreekPizza implements Pizza {
-    private readonly name = 'GreekPizza';
+export class ChicagoStyleCheesePizza implements Pizza {
+    private readonly name = 'ChicagoStyleCheesePizza';
 
     bake() {
         console.log(`baking ${this.name}`);
@@ -48,8 +48,8 @@ export class GreekPizza implements Pizza {
     }
 }
 
-export class PepperoniPizza implements Pizza {
-    private readonly name = 'PepperoniPizza';
+export class NYStyleGreekPizza implements Pizza {
+    private readonly name = 'NYStyleGreekPizza';
 
     bake() {
         console.log(`baking ${this.name}`);
@@ -68,8 +68,8 @@ export class PepperoniPizza implements Pizza {
     }
 }
 
-export class ClamPizza implements Pizza {
-    private readonly name = 'ClamPizza';
+export class ChicagoStyleGreekPizza implements Pizza {
+    private readonly name = 'ChicagoStyleGreekPizza';
 
     bake() {
         console.log(`baking ${this.name}`);
@@ -88,8 +88,108 @@ export class ClamPizza implements Pizza {
     }
 }
 
-export class VeggiePizza implements Pizza {
-    private readonly name = 'VeggiePizza';
+export class NYStylePepperoniPizza implements Pizza {
+    private readonly name = 'NYStylePepperoniPizza';
+
+    bake() {
+        console.log(`baking ${this.name}`);
+    }
+
+    box() {
+        console.log(`boxing ${this.name}`);
+    }
+
+    cut() {
+        console.log(`cutting ${this.name}`);
+    }
+
+    prepare() {
+        console.log(`preparing ${this.name}`);
+    }
+}
+
+export class ChicagoStylePepperoniPizza implements Pizza {
+    private readonly name = 'ChicagoStylePepperoniPizza';
+
+    bake() {
+        console.log(`baking ${this.name}`);
+    }
+
+    box() {
+        console.log(`boxing ${this.name}`);
+    }
+
+    cut() {
+        console.log(`cutting ${this.name}`);
+    }
+
+    prepare() {
+        console.log(`preparing ${this.name}`);
+    }
+}
+
+export class NYStyleClamPizza implements Pizza {
+    private readonly name = 'NYStyleClamPizza';
+
+    bake() {
+        console.log(`baking ${this.name}`);
+    }
+
+    box() {
+        console.log(`boxing ${this.name}`);
+    }
+
+    cut() {
+        console.log(`cutting ${this.name}`);
+    }
+
+    prepare() {
+        console.log(`preparing ${this.name}`);
+    }
+}
+
+export class ChicagoStyleClamPizza implements Pizza {
+    private readonly name = 'ChicagoStyleClamPizza';
+
+    bake() {
+        console.log(`baking ${this.name}`);
+    }
+
+    box() {
+        console.log(`boxing ${this.name}`);
+    }
+
+    cut() {
+        console.log(`cutting ${this.name}`);
+    }
+
+    prepare() {
+        console.log(`preparing ${this.name}`);
+    }
+}
+
+export class NYStyleVeggiePizza implements Pizza {
+    private readonly name = 'NYStyleVeggiePizza';
+
+    bake() {
+        console.log(`baking ${this.name}`);
+    }
+
+    box() {
+        console.log(`boxing ${this.name}`);
+    }
+
+    cut() {
+        console.log(`cutting ${this.name}`);
+    }
+
+    prepare() {
+        console.log(`preparing ${this.name}`);
+    }
+}
+
+export class ChicagoStyleVeggiePizza implements Pizza {
+    private readonly name = 'ChicagoStyleVeggiePizza';
 
     bake() {
         console.log(`baking ${this.name}`);
