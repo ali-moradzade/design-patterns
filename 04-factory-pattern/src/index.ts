@@ -11,7 +11,7 @@ function main() {
     chicagoStore.orderPizza('cheese');
 
     console.log();
-   
+
     const californiaStore: PizzaStore = new CaliforniaPizzaStore();
     californiaStore.orderPizza('cheese');
 }

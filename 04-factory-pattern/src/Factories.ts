@@ -1,3 +1,4 @@
+import {Pizza} from "./Pizza";
 import {
     CaliforniaStyleCheesePizza,
     ChicagoStyleCheesePizza,
@@ -10,8 +11,7 @@ import {
     NYStyleGreekPizza,
     NYStylePepperoniPizza,
     NYStyleVeggiePizza,
-    Pizza
-} from "./Pizza";
+} from './ConcretePizzas';
 import {PizzaStore} from "./PizzaStore";
 
 export class ChicagoPizzaStore extends PizzaStore {
