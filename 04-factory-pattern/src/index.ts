@@ -3,12 +3,12 @@ import {ChicagoPizzaStore, NYPizzaStore} from "./Factories";
 
 function main() {
     const nyStore: PizzaStore = new NYPizzaStore();
-    nyStore.orderPizza('veggie');
+    nyStore.orderPizza('cheese');
 
     console.log();
 
     const chicagoStore: PizzaStore = new ChicagoPizzaStore();
-    chicagoStore.orderPizza('veggie');
+    chicagoStore.orderPizza('cheese');
 }
 
 main();
