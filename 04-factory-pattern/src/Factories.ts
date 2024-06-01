@@ -1,4 +1,5 @@
 import {
+    CaliforniaStyleCheesePizza,
     ChicagoStyleCheesePizza,
     ChicagoStyleClamPizza,
     ChicagoStyleGreekPizza,
@@ -47,6 +48,18 @@ export class NYPizzaStore extends PizzaStore {
             pizza = new NYStyleClamPizza();
         } else if (type === 'veggie') {
             pizza = new NYStyleVeggiePizza();
+        }
+
+        return pizza;
+    }
+}
+
+export class CaliforniaPizzaStore extends PizzaStore {
+    createPizza(type: string): Pizza {
+        let pizza = new CaliforniaStyleCheesePizza();
+
+        if (type === 'cheese') {
+            pizza = new CaliforniaStyleCheesePizza();
         }
 
         return pizza;

@@ -65,6 +65,25 @@ export class ChicagoStyleCheesePizza extends Pizza {
     }
 }
 
+export class CaliforniaStyleCheesePizza extends Pizza {
+    name = 'CaliforniaStyleCheesePizza';
+    dough = 'dough';
+    sauce = 'sauce';
+    toppings = ['topping1', 'topping2'];
+
+    bake() {
+        console.log(`baking ${this.name}`);
+    }
+
+    box() {
+        console.log(`boxing ${this.name}`);
+    }
+
+    cut() {
+        console.log(`cutting ${this.name}`);
+    }
+}
+
 export class NYStyleGreekPizza extends Pizza {
     name = 'NYStyleGreekPizza';
     dough = 'dough';
