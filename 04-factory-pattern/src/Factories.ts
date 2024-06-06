@@ -13,21 +13,28 @@ import {
     NYStyleVeggiePizza,
 } from './ConcretePizzas';
 import {PizzaStore} from "./PizzaStore";
+import {
+    CaliforniaPizzaIngredientFactory,
+    ChicagoPizzaIngredientFactory,
+    NYPizzaIngredientFactory,
+    PizzaIngredientFactory
+} from "./PizzaIngredientFactory";
 
 export class ChicagoPizzaStore extends PizzaStore {
     createPizza(type: string): Pizza {
-        let pizza: Pizza = new ChicagoStyleCheesePizza();
+        const ingredientFactory: PizzaIngredientFactory = new ChicagoPizzaIngredientFactory();
+        let pizza: Pizza = new ChicagoStyleCheesePizza(ingredientFactory);
 
         if (type === 'cheese') {
-            pizza = new ChicagoStyleCheesePizza();
+            pizza = new ChicagoStyleCheesePizza(ingredientFactory);
         } else if (type === 'greek') {
-            pizza = new ChicagoStyleGreekPizza();
+            pizza = new ChicagoStyleGreekPizza(ingredientFactory);
         } else if (type === 'pepperoni') {
-            pizza = new ChicagoStylePepperoniPizza();
+            pizza = new ChicagoStylePepperoniPizza(ingredientFactory);
         } else if (type === 'clam') {
-            pizza = new ChicagoStyleClamPizza();
+            pizza = new ChicagoStyleClamPizza(ingredientFactory);
         } else if (type === 'veggie') {
-            pizza = new ChicagoStyleVeggiePizza();
+            pizza = new ChicagoStyleVeggiePizza(ingredientFactory);
         }
 
         return pizza;
@@ -36,18 +43,19 @@ export class ChicagoPizzaStore extends PizzaStore {
 
 export class NYPizzaStore extends PizzaStore {
     createPizza(type: string): Pizza {
-        let pizza: Pizza = new NYStyleCheesePizza();
+        const ingredientFactory: PizzaIngredientFactory = new NYPizzaIngredientFactory();
+        let pizza: Pizza = new NYStyleCheesePizza(ingredientFactory);
 
         if (type === 'cheese') {
-            pizza = new NYStyleCheesePizza();
+            pizza = new NYStyleCheesePizza(ingredientFactory);
         } else if (type === 'greek') {
-            pizza = new NYStyleGreekPizza();
+            pizza = new NYStyleGreekPizza(ingredientFactory);
         } else if (type === 'pepperoni') {
-            pizza = new NYStylePepperoniPizza();
+            pizza = new NYStylePepperoniPizza(ingredientFactory);
         } else if (type === 'clam') {
-            pizza = new NYStyleClamPizza();
+            pizza = new NYStyleClamPizza(ingredientFactory);
         } else if (type === 'veggie') {
-            pizza = new NYStyleVeggiePizza();
+            pizza = new NYStyleVeggiePizza(ingredientFactory);
         }
 
         return pizza;
@@ -56,10 +64,11 @@ export class NYPizzaStore extends PizzaStore {
 
 export class CaliforniaPizzaStore extends PizzaStore {
     createPizza(type: string): Pizza {
-        let pizza = new CaliforniaStyleCheesePizza();
+        const ingredientFactory: PizzaIngredientFactory = new CaliforniaPizzaIngredientFactory();
+        let pizza = new CaliforniaStyleCheesePizza(ingredientFactory);
 
         if (type === 'cheese') {
-            pizza = new CaliforniaStyleCheesePizza();
+            pizza = new CaliforniaStyleCheesePizza(ingredientFactory);
         }
 
         return pizza;
