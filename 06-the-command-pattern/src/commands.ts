@@ -1,4 +1,4 @@
-import {Light} from "./vendors";
+import {GarageDoor, Light} from "./vendors";
 
 export interface Command {
     execute(): void;
@@ -12,5 +12,16 @@ export class LightOnCommand implements Command {
 
     execute() {
         this.light.on();
+    }
+}
+
+export class GarageDoorOpenCommand implements Command {
+    constructor(
+        private garageDoor: GarageDoor,
+    ) {
+    }
+
+    execute() {
+        this.garageDoor.up();
     }
 }
