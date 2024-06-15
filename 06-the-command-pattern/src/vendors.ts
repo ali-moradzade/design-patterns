@@ -30,7 +30,7 @@ export class Stereo {
     }
 
     setVolume(volume: number) {
-        console.log('Stereo setVolume');
+        console.log(`Stereo setVolume ${volume}`);
     }
 }
 
@@ -143,12 +143,17 @@ export class GarageDoor {
 }
 
 export class Light {
+    constructor(
+        private name: string
+    ) {
+    }
+
     on() {
-        console.log('Light on');
+        console.log(`${this.name} Light on`);
     }
 
     off() {
-        console.log('Light off');
+        console.log(`${this.name} Light off`);
     }
 }
 

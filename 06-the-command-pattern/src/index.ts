@@ -1,21 +1,52 @@
 import {RemoteControl} from "./RemoteControl";
-import {GarageDoor, Light} from "./vendors";
-import {Command, GarageDoorOpenCommand, LightOnCommand} from "./commands";
+import {CeilingFan, GarageDoor, Light, Stereo} from "./vendors";
+import {
+    CeilingFanOffCommand,
+    CeilingFanOnCommand,
+    Command,
+    GarageDoorCloseCommand,
+    GarageDoorOpenCommand,
+    LightOffCommand,
+    LightOnCommand,
+    StereoOffCommand,
+    StereoOnWithCDCommand
+} from "./commands";
 
 function main() {
     const remote = new RemoteControl();
 
-    const light = new Light();
-    const lightOnCommand: Command = new LightOnCommand(light);
+    const livingRoomLight = new Light('Living Room');
+    const livingRoomLightOn: Command = new LightOnCommand(livingRoomLight);
+    const livingRoomLightOff: Command = new LightOffCommand(livingRoomLight);
 
-    remote.setCommand(lightOnCommand);
-    remote.buttonWasPressed();
+    const kitchenLight = new Light('Kitchen');
+    const kitchenLightOn: Command = new LightOnCommand(kitchenLight);
+    const kitchenLightOff: Command = new LightOffCommand(kitchenLight);
+
+    const ceilingFan = new CeilingFan();
+    const ceilingFanOn: Command = new CeilingFanOnCommand(ceilingFan);
+    const ceilingFanOff: Command = new CeilingFanOffCommand(ceilingFan);
 
     const garageDoor = new GarageDoor();
-    const garageDoorOpenCommand: Command = new GarageDoorOpenCommand(garageDoor);
+    const garageDoorOpen: Command = new GarageDoorOpenCommand(garageDoor);
+    const garageDoorClose: Command = new GarageDoorCloseCommand(garageDoor);
 
-    remote.setCommand(garageDoorOpenCommand);
-    remote.buttonWasPressed();
+    const stereo = new Stereo();
+    const stereoOnWithCd: Command = new StereoOnWithCDCommand(stereo);
+    const stereoOff: Command = new StereoOffCommand(stereo);
+
+    const SLOTS = 5;
+
+    remote.setCommand(0, livingRoomLightOn, livingRoomLightOff);
+    remote.setCommand(1, kitchenLightOn, kitchenLightOff);
+    remote.setCommand(2, ceilingFanOn, ceilingFanOff);
+    remote.setCommand(3, garageDoorOpen, garageDoorClose);
+    remote.setCommand(4, stereoOnWithCd, stereoOff);
+
+    for (let i = 0; i < SLOTS; i++) {
+        remote.onButtonWasPushed(i);
+        remote.offButtonWasPushed(i);
+    }
 }
 
 main();
