@@ -3,6 +3,7 @@ import {Command, NoCommand} from "./commands";
 export class RemoteControl {
     private readonly onCommands: Command[];
     private readonly offCommands: Command[];
+    private undoCommand: Command;
 
     static readonly SLOTS = 7;
 
@@ -16,6 +17,8 @@ export class RemoteControl {
             this.onCommands[i] = noCommand;
             this.offCommands[i] = noCommand;
         }
+
+        this.undoCommand = noCommand;
     }
 
     setCommand(slot: number, onCommand: Command, offCommand: Command) {
@@ -25,9 +28,15 @@ export class RemoteControl {
 
     onButtonWasPushed(slot: number) {
         this.onCommands[slot].execute();
+        this.undoCommand = this.onCommands[slot];
     }
 
     offButtonWasPushed(slot: number) {
         this.offCommands[slot].execute();
+        this.undoCommand = this.offCommands[slot];
+    }
+
+    undoButtonWasPressed() {
+        this.undoCommand.undo();
     }
 }

@@ -47,6 +47,8 @@ function main() {
         remote.onButtonWasPushed(i);
         remote.offButtonWasPushed(i);
     }
+
+    remote.undoButtonWasPressed();
 }
 
 main();

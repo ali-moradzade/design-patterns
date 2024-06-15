@@ -2,10 +2,16 @@ import {CeilingFan, GarageDoor, Light, Stereo} from "./vendors";
 
 export interface Command {
     execute(): void;
+
+    undo(): void;
 }
 
 export class NoCommand implements Command {
     execute() {
+        // do nothing
+    }
+
+    undo() {
         // do nothing
     }
 }
@@ -19,6 +25,10 @@ export class LightOnCommand implements Command {
     execute() {
         this.light.on();
     }
+
+    undo() {
+        this.light.off();
+    }
 }
 
 export class LightOffCommand implements Command {
@@ -29,6 +39,10 @@ export class LightOffCommand implements Command {
 
     execute() {
         this.light.off();
+    }
+
+    undo() {
+        this.light.on();
     }
 }
 
@@ -41,6 +55,10 @@ export class GarageDoorOpenCommand implements Command {
     execute() {
         this.garageDoor.up();
     }
+
+    undo() {
+        this.garageDoor.down();
+    }
 }
 
 export class GarageDoorCloseCommand implements Command {
@@ -51,6 +69,10 @@ export class GarageDoorCloseCommand implements Command {
 
     execute() {
         this.garageDoor.down();
+    }
+
+    undo() {
+        this.garageDoor.up();
     }
 }
 
@@ -63,6 +85,10 @@ export class CeilingFanOnCommand implements Command {
     execute() {
         this.ceilingFan.medium();
     }
+
+    undo() {
+        this.ceilingFan.off();
+    }
 }
 
 export class CeilingFanOffCommand implements Command {
@@ -73,6 +99,10 @@ export class CeilingFanOffCommand implements Command {
 
     execute() {
         this.ceilingFan.off();
+    }
+
+    undo() {
+        this.ceilingFan.medium();
     }
 }
 
@@ -85,6 +115,10 @@ export class StereoOnCommand implements Command {
     execute() {
         this.stereo.on();
     }
+
+    undo() {
+        this.stereo.off();
+    }
 }
 
 export class StereoOffCommand implements Command {
@@ -95,6 +129,10 @@ export class StereoOffCommand implements Command {
 
     execute() {
         this.stereo.off();
+    }
+
+    undo() {
+        this.stereo.on();
     }
 }
 
@@ -108,5 +146,9 @@ export class StereoOnWithCDCommand implements Command {
         this.stereo.on();
         this.stereo.setCd();
         this.stereo.setVolume(12);
+    }
+
+    undo() {
+        this.stereo.off();
     }
 }
