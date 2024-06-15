@@ -1,9 +1,9 @@
-import {SimpleRemoteControl} from "./SimpleRemoteControl";
+import {RemoteControl} from "./RemoteControl";
 import {GarageDoor, Light} from "./vendors";
 import {Command, GarageDoorOpenCommand, LightOnCommand} from "./commands";
 
 function main() {
-    const remote = new SimpleRemoteControl();
+    const remote = new RemoteControl();
 
     const light = new Light();
     const lightOnCommand: Command = new LightOnCommand(light);

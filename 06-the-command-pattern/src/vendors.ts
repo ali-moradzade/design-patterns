@@ -29,7 +29,7 @@ export class Stereo {
         console.log('Stereo setRadio');
     }
 
-    setVolume() {
+    setVolume(volume: number) {
         console.log('Stereo setVolume');
     }
 }
