@@ -1,9 +1,28 @@
-import {CeilingFan, CeilingFanSpeed, GarageDoor, Light, Stereo} from "./vendors";
+import {CeilingFan, CeilingFanSpeed, GarageDoor, Hottub, Light, Stereo, TV} from "./vendors";
 
 export interface Command {
     execute(): void;
 
     undo(): void;
+}
+
+export class MacroCommand implements Command {
+    constructor(
+        private commands: Command[],
+    ) {
+    }
+
+    execute() {
+        for (let command of this.commands) {
+            command.execute();
+        }
+    }
+
+    undo() {
+        for (let i = this.commands.length - 1; i >= 0; i--) {
+            this.commands[i].undo();
+        }
+    }
 }
 
 export class NoCommand implements Command {
@@ -161,5 +180,65 @@ export class StereoOnWithCDCommand implements Command {
 
     undo() {
         this.stereo.off();
+    }
+}
+
+export class TvOnCommand implements Command {
+    constructor(
+        private tv: TV,
+    ) {
+    }
+
+    execute() {
+        this.tv.on();
+    }
+
+    undo() {
+        this.tv.off();
+    }
+}
+
+export class TvOffCommand implements Command {
+    constructor(
+        private tv: TV,
+    ) {
+    }
+
+    execute() {
+        this.tv.off();
+    }
+
+    undo() {
+        this.tv.on();
+    }
+}
+
+export class HottubOnCommand implements Command {
+    constructor(
+        private hottub: Hottub,
+    ) {
+    }
+
+    execute() {
+        this.hottub.jetsOn();
+    }
+
+    undo() {
+        this.hottub.jetsOff();
+    }
+}
+
+export class HottubOffCommand implements Command {
+    constructor(
+        private hottub: Hottub,
+    ) {
+    }
+
+    execute() {
+        this.hottub.jetsOff();
+    }
+
+    undo() {
+        this.hottub.jetsOn();
     }
 }

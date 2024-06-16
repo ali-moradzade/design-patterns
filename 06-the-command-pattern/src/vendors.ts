@@ -45,20 +45,25 @@ export class FaucetControl {
 }
 
 export class TV {
+    constructor(
+        private location: string,
+    ) {
+    }
+
     on() {
-        console.log('TV on');
+        console.log(`${this.location} TV on`);
     }
 
     off() {
-        console.log('TV off');
+        console.log(`${this.location} TV off`);
     }
 
     setInputChannel() {
-        console.log('TV setInputChannel');
+        console.log(`${this.location} TV setInputChannel`);
     }
 
-    setVolume() {
-        console.log('TV setVolume');
+    setVolume(volume: number) {
+        console.log(`${this.location} TV setVolume ${volume}`);
     }
 }
 

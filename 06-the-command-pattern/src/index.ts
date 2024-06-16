@@ -1,15 +1,21 @@
 import {RemoteControl} from "./RemoteControl";
-import {CeilingFan, GarageDoor, Light, Stereo} from "./vendors";
+import {CeilingFan, GarageDoor, Hottub, Light, Stereo, TV} from "./vendors";
 import {
-    CeilingFanOffCommand,
     CeilingFanHighCommand,
+    CeilingFanOffCommand,
     Command,
     GarageDoorCloseCommand,
     GarageDoorOpenCommand,
+    HottubOffCommand,
+    HottubOnCommand,
     LightOffCommand,
     LightOnCommand,
+    MacroCommand,
     StereoOffCommand,
-    StereoOnWithCDCommand
+    StereoOnCommand,
+    StereoOnWithCDCommand,
+    TvOffCommand,
+    TvOnCommand
 } from "./commands";
 
 function main() {
@@ -50,10 +56,50 @@ function main() {
 
     remote.undoButtonWasPressed();
 
+    console.log('-------------');
+
     // Check ceiling fan multi state undo ability
     remote.offButtonWasPushed(2);
     remote.undoButtonWasPressed();
     remote.onButtonWasPushed(2);
+
+    console.log('-------------');
+
+    const light = new Light('Living Room');
+    const lightOn: Command = new LightOnCommand(light);
+    const lightOff: Command = new LightOffCommand(light);
+
+    const tv = new TV('Living Room');
+    const tvOn: Command = new TvOnCommand(tv);
+    const tvOff: Command = new TvOffCommand(tv);
+
+    const stereo2 = new Stereo();
+    const stereoOn2: Command = new StereoOnCommand(stereo2);
+    const stereoOff2: Command = new StereoOffCommand(stereo2);
+
+    const hottub = new Hottub();
+    const hottubOn: Command = new HottubOnCommand(hottub);
+    const hottubOff: Command = new HottubOffCommand(hottub);
+
+    const partyOn: Command[] = [
+        lightOn,
+        stereoOn2,
+        tvOn,
+        hottubOn,
+    ];
+    const partyOff: Command[] = [
+        lightOff,
+        stereoOff2,
+        tvOff,
+        hottubOff,
+    ];
+
+    const partyOnMacro = new MacroCommand(partyOn);
+    const partyOffMacro = new MacroCommand(partyOff);
+
+    remote.setCommand(0, partyOnMacro, partyOffMacro);
+    remote.onButtonWasPushed(0);
+    remote.offButtonWasPushed(0);
 }
 
 main();
