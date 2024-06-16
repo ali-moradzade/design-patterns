@@ -1,4 +1,4 @@
-import {CeilingFan, GarageDoor, Light, Stereo} from "./vendors";
+import {CeilingFan, CeilingFanSpeed, GarageDoor, Light, Stereo} from "./vendors";
 
 export interface Command {
     execute(): void;
@@ -76,18 +76,29 @@ export class GarageDoorCloseCommand implements Command {
     }
 }
 
-export class CeilingFanOnCommand implements Command {
+export class CeilingFanHighCommand implements Command {
+    private prevSpeed: CeilingFanSpeed;
+
     constructor(
         private ceilingFan: CeilingFan,
     ) {
     }
 
     execute() {
+        this.prevSpeed = this.ceilingFan.getSpeed();
         this.ceilingFan.medium();
     }
 
     undo() {
-        this.ceilingFan.off();
+        if (this.prevSpeed === CeilingFanSpeed.HIGH) {
+            this.ceilingFan.high();
+        } else if (this.prevSpeed === CeilingFanSpeed.MEDIUM) {
+            this.ceilingFan.medium();
+        } else if (this.prevSpeed === CeilingFanSpeed.LOW) {
+            this.ceilingFan.low();
+        } else if (this.prevSpeed === CeilingFanSpeed.OFF) {
+            this.ceilingFan.off();
+        }
     }
 }
 

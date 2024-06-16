@@ -2,7 +2,7 @@ import {RemoteControl} from "./RemoteControl";
 import {CeilingFan, GarageDoor, Light, Stereo} from "./vendors";
 import {
     CeilingFanOffCommand,
-    CeilingFanOnCommand,
+    CeilingFanHighCommand,
     Command,
     GarageDoorCloseCommand,
     GarageDoorOpenCommand,
@@ -23,8 +23,8 @@ function main() {
     const kitchenLightOn: Command = new LightOnCommand(kitchenLight);
     const kitchenLightOff: Command = new LightOffCommand(kitchenLight);
 
-    const ceilingFan = new CeilingFan();
-    const ceilingFanOn: Command = new CeilingFanOnCommand(ceilingFan);
+    const ceilingFan = new CeilingFan("Living Room");
+    const ceilingFanOn: Command = new CeilingFanHighCommand(ceilingFan);
     const ceilingFanOff: Command = new CeilingFanOffCommand(ceilingFan);
 
     const garageDoor = new GarageDoor();
@@ -49,6 +49,11 @@ function main() {
     }
 
     remote.undoButtonWasPressed();
+
+    // Check ceiling fan multi state undo ability
+    remote.offButtonWasPushed(2);
+    remote.undoButtonWasPressed();
+    remote.onButtonWasPushed(2);
 }
 
 main();

@@ -167,25 +167,44 @@ export class Sprinkler {
     }
 }
 
+export enum CeilingFanSpeed {
+    OFF,
+    LOW,
+    MEDIUM,
+    HIGH
+}
+
 export class CeilingFan {
+    private speed: CeilingFanSpeed;
+
+    constructor(
+        private location: string
+    ) {
+        this.speed = CeilingFanSpeed.HIGH;
+    }
+
     high() {
+        this.speed = CeilingFanSpeed.HIGH;
         console.log('CeilingFan high');
     }
 
     medium() {
+        this.speed = CeilingFanSpeed.MEDIUM;
         console.log('CeilingFan medium');
     }
 
     low() {
+        this.speed = CeilingFanSpeed.LOW;
         console.log('CeilingFan low');
     }
 
     off() {
+        this.speed = CeilingFanSpeed.OFF;
         console.log('CeilingFan off');
     }
 
     getSpeed() {
-        console.log('CeilingFan getSpeed');
+        return this.speed;
     }
 }
 
