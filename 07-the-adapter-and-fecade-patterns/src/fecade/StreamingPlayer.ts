@@ -18,8 +18,8 @@ export class StreamingPlayer {
         console.log('StreamingPlayer pause');
     }
 
-    play() {
-        console.log('StreamingPlayer play');
+    play(movie: string) {
+        console.log(`StreamingPlayer playing: ${movie}`);
     }
 
     stop() {

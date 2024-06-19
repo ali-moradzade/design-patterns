@@ -6,4 +6,12 @@ export class Amplifier {
     off() {
         console.log('Amplifier off');
     }
+
+    setSurroundedSound() {
+        console.log('Amplifier setSurroundedSound');
+    }
+
+    setVolume(amount: number) {
+        console.log(`Amplifier setVolume: ${amount}`);
+    }
 }
