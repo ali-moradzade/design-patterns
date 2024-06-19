@@ -4,8 +4,10 @@
   "main": "index.js",
   "scripts": {
     "start:build": "tsc",
-    "start:run": "node dist/index.js",
-    "start": "npm run start:build && npm run start:run"
+    "start:run:adapter": "node dist/adapter/index.js",
+    "start:run:fecade": "node dist/fecade/index.js",
+    "start:adapter": "npm run start:build && npm run start:run:adapter",
+    "start:fecade": "npm run start:build && npm run start:run:fecade"
   },
   "keywords": [],
   "author": "",
