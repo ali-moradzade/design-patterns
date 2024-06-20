@@ -4,32 +4,29 @@ import {Screen} from "./Screen";
 import {Projector} from "./Projector";
 import {StreamingPlayer} from "./StreamingPlayer";
 import {Amplifier} from "./Amplifier";
+import {HomeTheaterFecade} from "./HomeTheaterFecade";
 
 function main() {
-    const popper = new PopcornPopper();
-    popper.on();
-    popper.pop();
-
-    const lights = new TheaterLights();
-    lights.dim(10);
-
-    const screen = new Screen();
-    screen.down();
-
     const amplifier = new Amplifier();
+    const lights = new TheaterLights();
+    const screen = new Screen();
+    const popper = new PopcornPopper();
     const streamingPlayer = new StreamingPlayer(amplifier);
     const projector = new Projector(streamingPlayer);
 
-    projector.on();
-    projector.wideScreenMode();
+    const homeTheaterFecade = new HomeTheaterFecade(
+        amplifier,
+        lights,
+        screen,
+        popper,
+        streamingPlayer,
+        projector,
+    );
 
-    amplifier.on();
-    amplifier.setSurroundedSound();
-    amplifier.setVolume(5);
+    homeTheaterFecade.watchMovie('Raiders of the Lost Ark');
 
-    const movie = 'Movie';
-    streamingPlayer.on();
-    streamingPlayer.play(movie);
+    console.log();
+    homeTheaterFecade.endMovie();
 }
 
 main();
