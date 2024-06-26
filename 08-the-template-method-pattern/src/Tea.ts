@@ -1,18 +1,11 @@
 import {CaffeineBeverage} from "./CaffeineBeverage";
 
 export class Tea extends CaffeineBeverage {
-    prepareRecipe() {
-        super.boilWater();
-        this.steepTeaBag();
-        super.pourInCup();
-        this.addLemon();
-    }
-
-    steepTeaBag() {
+    brew() {
         console.log('Steeping the tea');
     }
 
-    addLemon() {
+    addCondiments() {
         console.log('Adding lemon');
     }
 }
