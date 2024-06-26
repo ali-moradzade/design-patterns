@@ -1,0 +1,14 @@
+{
+  "name": "08-the-tempelate-method-pattern",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start:build": "tsc",
+    "start:run": "node dist/index.js",
+    "start": "npm run start:build && npm run start:run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
