@@ -1,21 +1,15 @@
-export class Tea {
-    prepareRecipe() {
-        this.boilWater();
-        this.steepTeaBag();
-        this.pourInCup();
-        this.addLemon();
-    }
+import {CaffeineBeverage} from "./CaffeineBeverage";
 
-    boilWater() {
-        console.log('Boiling water');
+export class Tea extends CaffeineBeverage {
+    prepareRecipe() {
+        super.boilWater();
+        this.steepTeaBag();
+        super.pourInCup();
+        this.addLemon();
     }
 
     steepTeaBag() {
         console.log('Steeping the tea');
-    }
-
-    pourInCup() {
-        console.log('Pouring into cup');
     }
 
     addLemon() {

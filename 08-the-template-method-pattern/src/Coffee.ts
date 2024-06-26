@@ -1,21 +1,15 @@
-export class Coffee {
-    prepareRecipe() {
-        this.boilWater();
-        this.brewCoffeeGrinds();
-        this.pourInCup();
-        this.addSugarAndMilk();
-    }
+import {CaffeineBeverage} from "./CaffeineBeverage";
 
-    boilWater() {
-        console.log('Boiling water');
+export class Coffee extends CaffeineBeverage {
+    prepareRecipe() {
+        super.boilWater();
+        this.brewCoffeeGrinds();
+        super.pourInCup();
+        this.addSugarAndMilk();
     }
 
     brewCoffeeGrinds() {
         console.log('Dripping Coffee through filter');
-    }
-
-    pourInCup() {
-        console.log('Pouring into cup');
     }
 
     addSugarAndMilk() {
