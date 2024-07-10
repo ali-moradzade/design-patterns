@@ -1,5 +1,5 @@
-import {Coffee} from "./Coffee";
-import {Tea} from "./Tea";
+import {Coffee} from "./CoffeeWithHook";
+import {Tea} from "./TeaWithHook";
 
 function main() {
     const coffee = new Coffee();

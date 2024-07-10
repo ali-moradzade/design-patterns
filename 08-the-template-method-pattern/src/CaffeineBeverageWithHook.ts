@@ -3,7 +3,10 @@ export abstract class CaffeineBeverage {
         this.boilWater();
         this.brew();
         this.pourInCup();
-        this.addCondiments();
+
+        if (this.customerWantsCondiments()) {
+            this.addCondiments();
+        }
     }
 
     abstract brew(): void;
@@ -16,5 +19,9 @@ export abstract class CaffeineBeverage {
 
     pourInCup() {
         console.log('Pouring into cup');
+    }
+
+    customerWantsCondiments(): boolean {
+        return true;
     }
 }
