@@ -20,14 +20,7 @@ export class Waitress {
     }
 
     printMenuHelper(iterator: IterableIterator<MenuItem>) {
-        while (true) {
-            let {value, done} = iterator.next();
-
-            if (done) {
-                return;
-            }
-
-            const menuItem = value;
+        for (let menuItem of iterator) {
             console.log(`${menuItem.getName()}, ${menuItem.getPrice()} \$ -- ${menuItem.getDescription()}`);
         }
     }
