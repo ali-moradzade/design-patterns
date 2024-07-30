@@ -1,22 +1,28 @@
 import {PancakeHouseMenu} from "./PancakeHouseMenu";
 import {DinerMenu} from "./DinerMenu";
+import {Iterator} from './Iterator';
 
 export class Waitress {
+    constructor(
+        private pancakeHouseMenu: PancakeHouseMenu,
+        private dinerMenu: DinerMenu,
+    ) {
+    }
+
     printMenu() {
-        const pancakeHouseMenu = new PancakeHouseMenu();
-        const breakfastItems = pancakeHouseMenu.getMenuItems();
+        const pancakeIterator = this.pancakeHouseMenu.createIterator();
+        const dinerIterator = this.dinerMenu.createIterator();
 
-        const dinerMenu = new DinerMenu();
-        const lunchItems = dinerMenu.getMenuItems();
+        console.log('MENU\n----\nBREAKFAST');
+        this.printMenuHelper(pancakeIterator);
+        console.log('\nLAUNCH');
+        this.printMenuHelper(dinerIterator);
+    }
 
-        for (let menuItem of breakfastItems) {
-            console.log(`${menuItem.getName()} ${menuItem.getPrice()}`);
-            console.log(menuItem.getDescription());
-        }
-
-        for (let menuItem of lunchItems) {
-            console.log(`${menuItem.getName()} ${menuItem.getPrice()}`);
-            console.log(menuItem.getDescription());
+    printMenuHelper(iterator: Iterator) {
+        while (iterator.hasNext()) {
+            const menuItem = iterator.next();
+            console.log(`${menuItem.getName()}, ${menuItem.getPrice()} \$ -- ${menuItem.getDescription()}`);
         }
     }
 }

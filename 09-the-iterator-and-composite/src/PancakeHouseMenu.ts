@@ -1,4 +1,5 @@
 import {MenuItem} from "./MenuItem";
+import {PancakeHouseMenuIterator} from "./Iterator";
 
 export class PancakeHouseMenu {
     private readonly menuItems: MenuItem[];
@@ -32,7 +33,7 @@ export class PancakeHouseMenu {
         this.menuItems.push(menuItem);
     }
 
-    getMenuItems() {
-        return this.menuItems;
+    createIterator() {
+        return new PancakeHouseMenuIterator(this.menuItems);
     }
 }

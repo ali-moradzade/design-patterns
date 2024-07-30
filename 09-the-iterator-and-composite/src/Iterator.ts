@@ -25,3 +25,23 @@ export class DinerMenuIterator implements Iterator {
         return !(this.position >= this.items.length || this.items[this.position] === undefined);
     }
 }
+
+export class PancakeHouseMenuIterator implements Iterator {
+    position = 0;
+
+    constructor(
+        private items: MenuItem[],
+    ) {
+    }
+
+    next(): MenuItem {
+        const item = this.items[this.position];
+        this.position++;
+
+        return item;
+    }
+
+    hasNext(): boolean {
+        return !(this.position >= this.items.length || this.items[this.position] === undefined);
+    }
+}
