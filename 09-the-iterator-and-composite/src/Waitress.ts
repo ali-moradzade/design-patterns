@@ -1,6 +1,6 @@
 import {PancakeHouseMenu} from "./PancakeHouseMenu";
 import {DinerMenu} from "./DinerMenu";
-import {Iterator} from './Iterator';
+import {MenuItem} from "./MenuItem";
 
 export class Waitress {
     constructor(
@@ -19,9 +19,15 @@ export class Waitress {
         this.printMenuHelper(dinerIterator);
     }
 
-    printMenuHelper(iterator: Iterator) {
-        while (iterator.hasNext()) {
-            const menuItem = iterator.next();
+    printMenuHelper(iterator: IterableIterator<MenuItem>) {
+        while (true) {
+            let {value, done} = iterator.next();
+
+            if (done) {
+                return;
+            }
+
+            const menuItem = value;
             console.log(`${menuItem.getName()}, ${menuItem.getPrice()} \$ -- ${menuItem.getDescription()}`);
         }
     }

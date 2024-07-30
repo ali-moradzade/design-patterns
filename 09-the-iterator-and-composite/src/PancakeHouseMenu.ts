@@ -1,10 +1,9 @@
 import {MenuItem} from "./MenuItem";
-import {PancakeHouseMenuIterator} from "./Iterator";
 
 export class PancakeHouseMenu {
     private readonly menuItems: MenuItem[];
 
-    constructor( ) {
+    constructor() {
         this.menuItems = [];
 
         this.addItem("K&B's Pancake Breakfast",
@@ -34,6 +33,6 @@ export class PancakeHouseMenu {
     }
 
     createIterator() {
-        return new PancakeHouseMenuIterator(this.menuItems);
+        return this.menuItems.values();
     }
 }

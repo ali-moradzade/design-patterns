@@ -1,5 +1,4 @@
 import {MenuItem} from "./MenuItem";
-import {DinerMenuIterator} from "./Iterator";
 
 export class DinerMenu {
     private MAX_ITEMS = 6;
@@ -34,6 +33,6 @@ export class DinerMenu {
     }
 
     createIterator() {
-        return new DinerMenuIterator(this.menuItems);
+        return this.menuItems.values();
     }
 }
