@@ -1,9 +1,11 @@
 import {MenuItem} from "./MenuItem";
 
 export class PancakeHouseMenu {
-    constructor(
-        private menuItems: MenuItem[],
-    ) {
+    private readonly menuItems: MenuItem[];
+
+    constructor( ) {
+        this.menuItems = [];
+
         this.addItem("K&B's Pancake Breakfast",
             "Pancakes with scrambled eggs and toast",
             true,
