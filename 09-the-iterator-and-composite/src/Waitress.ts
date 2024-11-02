@@ -3,23 +3,14 @@ import {Menu} from "./Menu";
 
 export class Waitress {
     constructor(
-        private pancakeHouseMenu: Menu,
-        private dinerMenu: Menu,
-        private cafeMenu: Menu,
+        private menus: Menu[],
     ) {
     }
 
     printMenu() {
-        const pancakeIterator = this.pancakeHouseMenu.createIterator();
-        const dinerIterator = this.dinerMenu.createIterator();
-        const cafeIterator = this.cafeMenu.createIterator();
-
-        console.log('MENU\n----\nBREAKFAST');
-        this.printMenuHelper(pancakeIterator);
-        console.log('\nLAUNCH');
-        this.printMenuHelper(dinerIterator);
-        console.log('\nDINNER');
-        this.printMenuHelper(cafeIterator);
+        for (let menu of this.menus) {
+            this.printMenuHelper(menu.createIterator());
+        }
     }
 
     printMenuHelper(iterator: IterableIterator<MenuItem>) {
