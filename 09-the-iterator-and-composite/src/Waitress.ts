@@ -1,11 +1,10 @@
-import {PancakeHouseMenu} from "./PancakeHouseMenu";
-import {DinerMenu} from "./DinerMenu";
 import {MenuItem} from "./MenuItem";
+import {Menu} from "./Menu";
 
 export class Waitress {
     constructor(
-        private pancakeHouseMenu: PancakeHouseMenu,
-        private dinerMenu: DinerMenu,
+        private pancakeHouseMenu: Menu,
+        private dinerMenu: Menu,
     ) {
     }
 

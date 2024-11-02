@@ -1,6 +1,7 @@
 import {MenuItem} from "./MenuItem";
+import {Menu} from "./Menu";
 
-export class DinerMenu {
+export class DinerMenu implements Menu{
     private MAX_ITEMS = 6;
     private numberOfItems = 0;
     private readonly menuItems: MenuItem[];

@@ -1,6 +1,7 @@
 import {MenuItem} from "./MenuItem";
+import {Menu} from "./Menu";
 
-export class PancakeHouseMenu {
+export class PancakeHouseMenu implements Menu{
     private readonly menuItems: MenuItem[];
 
     constructor() {
