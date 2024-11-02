@@ -1,10 +1,13 @@
-export class MenuItem {
+import {MenuComponent} from "./MenuComponent";
+
+export class MenuItem extends MenuComponent {
     constructor(
         private name: string,
         private description: string,
         private vegetarian: boolean,
         private price: number,
     ) {
+        super();
     }
 
     getName(): string {
@@ -21,5 +24,10 @@ export class MenuItem {
 
     isVegetarian(): boolean {
         return this.vegetarian;
+    }
+
+    print() {
+        console.log(` ${this.getName()}${this.isVegetarian() && '(v)'}, \$${this.getPrice()}`);
+        console.log(`  -- ${this.getDescription()}`);
     }
 }

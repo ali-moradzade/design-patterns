@@ -1,21 +1,12 @@
-import {MenuItem} from "./MenuItem";
-import {Menu} from "./Menu";
+import {MenuComponent} from "./MenuComponent";
 
 export class Waitress {
     constructor(
-        private menus: Menu[],
+        private allMenus: MenuComponent,
     ) {
     }
 
     printMenu() {
-        for (let menu of this.menus) {
-            this.printMenuHelper(menu.createIterator());
-        }
-    }
-
-    printMenuHelper(iterator: IterableIterator<MenuItem>) {
-        for (let menuItem of iterator) {
-            console.log(`${menuItem.getName()}, \$${menuItem.getPrice()} -- ${menuItem.getDescription()}`);
-        }
+        this.allMenus.print();
     }
 }
