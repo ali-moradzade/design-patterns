@@ -1,83 +1,77 @@
+import {State} from './State';
+import {NoQuarterState} from './NoQuarterState';
+import {SoldOutState} from './SoldOutState';
+import {HasQuarterState} from './HasQuarterState';
+import {SoldState} from './SoldState';
+
 export class GumballMachine {
-    private static SOLD_OUT = 0;
-    private static NO_QUARTER = 1;
-    private static HAS_QUARTER = 2;
-    private static SOLD = 3;
+    private readonly soldOutState: State;
+    private readonly noQuarterState: State;
+    private readonly hasQuarterState: State;
+    private readonly soldState: State;
     
-    private state = GumballMachine.SOLD_OUT;
+    private state: State;
     
     constructor(
         private count: number,
     ) {
-        if (this.count > 1) {
-            this.state = GumballMachine.NO_QUARTER;
+        this.soldOutState = new SoldOutState(this);
+        this.noQuarterState = new NoQuarterState(this);
+        this.hasQuarterState = new HasQuarterState(this);
+        this.soldOutState = new SoldState(this);
+        
+        if (count > 0) {
+            this.state = this.noQuarterState;
+        } else {
+            this.state = this.soldOutState;
         }
     }
     
     insertQuarter() {
-        if (this.state === GumballMachine.HAS_QUARTER) {
-            console.log('You can\'t insert another quarter');
-        } else if (this.state === GumballMachine.NO_QUARTER) {
-            this.state = GumballMachine.HAS_QUARTER;
-            console.log('You inserted a quarter');
-        } else if (this.state === GumballMachine.SOLD_OUT) {
-            console.log('You can\'t insert a quarter, the machine is sold out');
-        } else if (this.state === GumballMachine.SOLD) {
-            console.log('Please wait, we\'re already giving you a gumball');
-        }
+        this.state.insertQuarter();
     }
     
-    rejectQuarter() {
-        if (this.state === GumballMachine.HAS_QUARTER) {
-            console.log('Quarter returned');
-            this.state = GumballMachine.NO_QUARTER;
-        } else if (this.state === GumballMachine.NO_QUARTER) {
-            console.log('You haven\'t inserted a quarter');
-        } else if (this.state === GumballMachine.SOLD_OUT) {
-            console.log('Sorry, you already turned the crank');
-        } else if (this.state === GumballMachine.SOLD) {
-            console.log('You can\'t eject, you haven\'t inserted a quarter yet');
-        }
+    ejectQuarter() {
+        this.state.ejectQuarter();
     }
     
     turnCrank() {
-        if (this.state === GumballMachine.HAS_QUARTER) {
-            console.log('You turned...');
-            this.state = GumballMachine.SOLD;
-            this.dispense();
-        } else if (this.state === GumballMachine.NO_QUARTER) {
-            console.log('You turned but there\'s no quarter');
-        } else if (this.state === GumballMachine.SOLD_OUT) {
-            console.log('You turned but there are no gumballs');
-        } else if (this.state === GumballMachine.SOLD) {
-            console.log('Turning twice doesn\'t get you another gumball!');
-        }
+        this.state.turnCrank();
+        this.state.dispense();
     }
     
-    dispense() {
-        if (this.state === GumballMachine.SOLD) {
-            console.log('A gumball comes rolling out the slot');
+    setState(state: State) {
+        this.state = state;
+    }
+    
+    releaseBall() {
+        console.log('A gumball comes rolling out the slot...');
+        if (this.count > 0) {
             this.count--;
-            
-            if (this.count === 0) {
-                console.log('Oops, out of gumballs!');
-                this.state = GumballMachine.SOLD_OUT;
-            } else {
-                this.state = GumballMachine.NO_QUARTER;
-            }
-        } else if (this.state === GumballMachine.NO_QUARTER) {
-            console.log('You need to pay first');
-        } else if (this.state === GumballMachine.SOLD_OUT) {
-            console.log('No gumball dispensed');
-        } else if (this.state === GumballMachine.HAS_QUARTER) {
-            console.log('You need to turn the crank');
         }
     }
     
-    print() {
-        console.log('\nMighty Gumball, Inc.');
-        console.log('Java-enabled Standing Gumball Model #2004');
-        console.log(`Inventory: ${this.count} gumballs`);
-        console.log('Machine is waiting for quarter\n');
+    getState() {
+        return this.state;
+    }
+    
+    getCount() {
+        return this.count;
+    }
+    
+    getNoQuarterState() {
+        return this.noQuarterState;
+    }
+    
+    getHasQuarterState() {
+        return this.hasQuarterState;
+    }
+    
+    getSoldOutState() {
+        return this.soldOutState;
+    }
+    
+    getSoldState() {
+        return this.soldState;
     }
 }
