@@ -8,15 +8,19 @@ export class NoQuarterState implements State {
     }
     
     insertQuarter(): void {
-        throw new Error('Method not implemented.');
+        console.log('You inserted a quarter');
+        this.gumballMachine.setState(this.gumballMachine.getHasQuarterState());
     }
+    
     ejectQuarter(): void {
-        throw new Error('Method not implemented.');
+        console.log('You haven\'t inserted a quarter');
     }
+    
     turnCrank(): void {
-        throw new Error('Method not implemented.');
+        console.log('You turned, but there\'s no quarter');
     }
+    
     dispense(): void {
-        throw new Error('Method not implemented.');
+        console.log('You need to pay first');
     }
 }

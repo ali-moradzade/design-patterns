@@ -3,12 +3,14 @@ import {NoQuarterState} from './NoQuarterState';
 import {SoldOutState} from './SoldOutState';
 import {HasQuarterState} from './HasQuarterState';
 import {SoldState} from './SoldState';
+import {WinnerState} from './WinnerState';
 
 export class GumballMachine {
     private readonly soldOutState: State;
     private readonly noQuarterState: State;
     private readonly hasQuarterState: State;
     private readonly soldState: State;
+    private readonly winnerState: State;
     
     private state: State;
     
@@ -18,7 +20,8 @@ export class GumballMachine {
         this.soldOutState = new SoldOutState(this);
         this.noQuarterState = new NoQuarterState(this);
         this.hasQuarterState = new HasQuarterState(this);
-        this.soldOutState = new SoldState(this);
+        this.soldState = new SoldState(this);
+        this.winnerState = new WinnerState(this);
         
         if (count > 0) {
             this.state = this.noQuarterState;
@@ -51,6 +54,18 @@ export class GumballMachine {
         }
     }
     
+    print() {
+        console.log('\nMighty Gumball, Inc.');
+        console.log('Typescript-enabled Standing Gumball Model #2024');
+        console.log(`Inventory: ${this.count} gumballs`);
+        
+        if (this.getState() === this.getNoQuarterState()) {
+            console.log('Machine is waiting for quarter\n');
+        } else {
+            console.log('Machine is sold out\n');
+        }
+    }
+    
     getState() {
         return this.state;
     }
@@ -73,5 +88,9 @@ export class GumballMachine {
     
     getSoldState() {
         return this.soldState;
+    }
+    
+    getWinnerState() {
+        return this.winnerState;
     }
 }

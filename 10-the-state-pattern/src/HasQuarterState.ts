@@ -7,6 +7,13 @@ export class HasQuarterState implements State {
     ) {
     }
     
+    /**
+     * Returns true with chance of 10%
+     */
+    private randomWinner() {
+        return Math.random() < 0.1;
+    }
+    
     insertQuarter() {
         console.log('You can\'t insert another quarter');
     }
@@ -18,7 +25,13 @@ export class HasQuarterState implements State {
     
     turnCrank() {
         console.log('You turned...');
-        this.gumballMachine.setState(this.gumballMachine.getSoldState());
+        const winner = this.randomWinner();
+        
+        if (winner && (this.gumballMachine.getCount() > 1)) {
+            this.gumballMachine.setState(this.gumballMachine.getWinnerState());
+        } else {
+            this.gumballMachine.setState(this.gumballMachine.getSoldState());
+        }
     }
     
     dispense() {
