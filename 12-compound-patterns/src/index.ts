@@ -1,4 +1,7 @@
 import {DuckSimulator} from "./DuckSimulator";
+import {CountingDuckFactory} from "./CountingDuckFactory";
 
 const simulator = new DuckSimulator();
-simulator.simulate();
+const duckFactory = new CountingDuckFactory();
+
+simulator.simulate(duckFactory);

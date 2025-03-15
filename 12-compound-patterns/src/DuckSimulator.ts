@@ -1,18 +1,18 @@
-import {DuckCall, MallardDuck, RedheadDuck, RubberDuck} from "./ducks";
 import {Quackable} from "./Quackable";
 import {GooseAdapter} from "./GooseAdapter";
 import {Goose} from "./Goose";
 import {QuackCounter} from "./QuackCounter";
+import {AbstractDuckFactory} from "./AbstractDuckFactory";
 
 export class DuckSimulator {
-    simulate() {
-        const mallardDuck = new QuackCounter(new MallardDuck());
-        const redheadDuck = new QuackCounter(new RedheadDuck());
-        const duckCall = new QuackCounter(new DuckCall());
-        const rubberDuck = new QuackCounter(new RubberDuck());
+    simulate(duckFactory: AbstractDuckFactory) {
+        const mallardDuck = duckFactory.createMallardDuck();
+        const redheadDuck = duckFactory.createRedheadDuck();
+        const duckCall = duckFactory.createDuckCall();
+        const rubberDuck = duckFactory.createRubberDuck();
         const gooseDuck = new GooseAdapter(new Goose());
 
-        console.log('Duck simulator');
+        console.log('Duck simulator: with Abstract Factory');
 
         this.simulateDuck(mallardDuck);
         this.simulateDuck(redheadDuck);
